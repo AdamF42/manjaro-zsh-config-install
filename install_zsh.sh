@@ -159,17 +159,3 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 else
     echo "No changes made."
 fi
-
-# ASCII Art Warning
-cat << "EOF"
-.___                              __                 __   
-|   | _____ ______   ____________/  |______    _____/  |_ 
-|   |/     \\____ \ /  _ \_  __ \   __\__  \  /    \   __\
-|   |  Y Y  \  |_> >  <_> )  | \/|  |  / __ \|   |  \  |  
-|___|__|_|  /   __/ \____/|__|   |__| (____  /___|  /__|  
-          \/|__|                           \/     \/      
-
-After completing the installation, please select the **MesloLGS NF** font in your terminal emulator.
-Refer to the following link for instructions: 
-https://github.com/romkatv/powerlevel10k/blob/master/font.md#manual-font-installation
-EOF

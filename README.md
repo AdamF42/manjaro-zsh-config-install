@@ -5,6 +5,7 @@ This script automates the installation and configuration of Zsh along with essen
 ## Features
 
 - Installs Zsh and configures `.zshrc` for the current user and root.
+- Installs the MesloLGS NF font
 - Clones and sets up the `manjaro-zsh-config` repository.
 - Installs popular Zsh plugins including:
   - zsh-autosuggestions
@@ -16,8 +17,11 @@ This script automates the installation and configuration of Zsh along with essen
 
 ## Requirements
 
-- Zsh must be installed on the system. If not, the script will prompt for installation.
-- Internet connection for cloning repositories.
+- Zsh
+- Curl
+- Make
+- Git
+
 
 ## Usage
 
@@ -42,9 +46,20 @@ This script automates the installation and configuration of Zsh along with essen
 
 4. **Restart your terminal** or run `source ~/.zshrc` to apply the changes.
 
+5. **Select the MesloLGS NF font**
+
+After running the script, make sure to select the MesloLGS NF font in your terminal emulator. Refer to the following link for instructions: [Powerlevel10k Font Installation](https://github.com/romkatv/powerlevel10k/blob/master/font.md#manual-font-installation)
+
 ## Customization
 
 You can customize the script to suit your preferences, such as modifying the plugins or themes that are installed. Simply edit the `install_zsh.sh` script before running it.
+
+## Tested Operating Systems
+
+This script has been tested on the following operating systems:
+
+- Ubuntu 24.04
+- Kubuntu 24.04
 
 ## License
 
