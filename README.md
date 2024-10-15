@@ -1,6 +1,6 @@
 # Manjaro Zsh Configuration Script
 
-This script automates the installation and configuration of Zsh along with essential plugins and themes, using the `manjaro-zsh-config` repository as a base. It is designed for Manjaro users who want to quickly set up a consistent Zsh environment across multiple machines.
+This script automates the installation and configuration of Zsh along with essential plugins and themes, using the `manjaro-zsh-config` repository as a base. It is designed for Linux users who love Manjaro Zsh config and want to quickly set up a consistent Zsh environment across multiple machines.
 
 ## Features
 
