@@ -73,27 +73,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contributing
 
 If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request.
-
-
-
-### Instructions for Committing to GitHub
-1. Create a new directory for your project.
-2. Inside that directory, create the `install_zsh.sh` script with your installation script code.
-3. Create a `README.md` file and paste the content provided above.
-4. Add a `.gitignore` file if you want to exclude specific files or directories.
-5. Initialize a git repository, add your files, and commit:
-
-   ```bash
-   git init
-   git add install_zsh.sh README.md
-   git commit -m "Initial commit: Add Zsh configuration script"
-   ```
-
-6. Link your local repository to GitHub and push:
-
-   ```bash
-   git remote add origin https://github.com/yourusername/manjaro-zsh-config-script.git
-   git push -u origin master
-   ```
-
-Replace `yourusername` with your GitHub username. This setup will allow you to easily replicate your Zsh configuration across all your machines.
