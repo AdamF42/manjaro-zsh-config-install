@@ -28,7 +28,7 @@ This script automates the installation and configuration of Zsh along with essen
 1. **Clone this repository:**
 
    ```bash
-   git clone https://github.com/yourusername/manjaro-zsh-config-script.git
+   git clone https://github.com/AdamF42/manjaro-zsh-config-install.git
    cd manjaro-zsh-config-script
    ```
 
