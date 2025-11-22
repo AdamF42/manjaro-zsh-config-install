@@ -105,6 +105,9 @@ check_success "Installing root .zshrc"
 sudo mv "${temp_dir}/manjaro-zsh-config/manjaro-zsh-prompt" /usr/share/zsh/
 check_success "Moving manjaro-zsh-prompt"
 
+sudo mv "${temp_dir}/manjaro-zsh-config/manjaro-zsh-config" /usr/share/zsh/
+check_success "Moving manjaro-zsh-config"
+
 sudo mv "${temp_dir}/manjaro-zsh-config/p10k.zsh" /usr/share/zsh/
 check_success "Moving p10k.zsh"
 
