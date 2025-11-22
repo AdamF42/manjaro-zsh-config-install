@@ -57,12 +57,23 @@ FONT_NAMES=(
     "MesloLGS NF Bold Italic.ttf"
 )
 
-# Prompt for installation directory
-read -p "Enter the installation directory for fonts (default: /usr/share/fonts/truetype/MesloLGS): " FONT_DIR
-FONT_DIR=${FONT_DIR:-/usr/share/fonts/truetype/MesloLGS}
+# Prompt for font installation scope
+read -p "Install fonts for just this user (user space) or for all users (shared/system-wide)? [user/shared, default: shared]: " FONT_SCOPE
+FONT_SCOPE=${FONT_SCOPE:-shared}
+
+if [[ "$FONT_SCOPE" =~ ^[Uu][Ss][Ee][Rr]$ ]]; then
+    FONT_DIR="$HOME/.local/share/fonts/MesloLGS"
+    CACHE_CMD="fc-cache -fv \"$FONT_DIR\""
+    SUDO_CMD=""
+else
+    FONT_DIR="/usr/share/fonts/truetype/MesloLGS"
+    CACHE_CMD="sudo fc-cache -fv \"$FONT_DIR\""
+    SUDO_CMD="sudo"
+fi
 
 # Create the fonts directory if it doesn't exist
-sudo mkdir -p "$FONT_DIR"
+$SUDO_CMD mkdir -p "$FONT_DIR"
+check_success "Creating font directory"
 
 # Download each font into the specified directory
 for i in "${!FONT_URLS[@]}"; do
@@ -76,14 +87,13 @@ for i in "${!FONT_URLS[@]}"; do
     fi
 
     echo "Downloading font: ${FONT_NAMES[$i]}..."
-    curl -L -o "$FONT_FILE" "$FONT_URL"
-
+    $SUDO_CMD curl -L -o "$FONT_FILE" "$FONT_URL"
     check_success "Downloading ${FONT_NAMES[$i]}"
 done
 
 # Update the font cache
 echo "Updating font cache..."
-sudo fc-cache -fv "$FONT_DIR"
+eval $CACHE_CMD
 check_success "Unable to update fonts"
 
 # Create a temporary directory for cloning repositories
