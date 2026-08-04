@@ -38,11 +38,14 @@ for cmd in "${required_cmds[@]}"; do
 done
 
 if [ $is_bsd -eq 1 ]; then
-    # pkg required for FreeBSD
-    cmd="gdircolors"
-    if ! command -v  "$cmd" &> /dev/null; then
-        missing_cmds+=("GNU coreutils")
-    fi
+  # commands required for FreeBSD
+  required_cmds_bsd=("gdircolors" "fc-cache")
+
+  for cmd in "${required_cmds_bsd[@]}"; do
+      if ! command -v "$cmd" &> /dev/null; then
+          missing_cmds+=("$cmd")
+      fi
+  done
 fi
 
 # Report missing commands
