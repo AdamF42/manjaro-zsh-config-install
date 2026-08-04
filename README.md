@@ -22,6 +22,12 @@ This script automates the installation and configuration of Zsh along with essen
 - Make
 - Git
 
+## Additional requirements for FreeBSD
+
+- gdircolors
+    - part of the [coreutils](https://www.freshports.org/sysutils/coreutils/) package
+- fc-cache
+    - part of the [fontconfig](https://www.freshports.org/x11-fonts/fontconfig/) package
 
 ## Usage
 
@@ -60,6 +66,9 @@ This script has been tested on the following operating systems:
 
 - Ubuntu 24.04
 - Kubuntu 24.04
+- FreeBSD 15.0
+- GhostBSD 26.1-R15.0p2
+- GhostBSD 25.02-R14.3p2
 
 ## License
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Function to check the success of commands
 check_success() {
@@ -21,8 +21,13 @@ clone_if_not_exists() {
     fi
 }
 
+is_bsd=0
+if [[ "$(uname -s)" == "FreeBSD" ]] then
+    is_bsd=1
+fi
+
 # Required programs
-required_cmds=("zsh" "curl" "make")
+required_cmds=("zsh" "curl" "make" "git")
 missing_cmds=()
 
 # Check if required programs are installed
@@ -31,6 +36,17 @@ for cmd in "${required_cmds[@]}"; do
         missing_cmds+=("$cmd")
     fi
 done
+
+if [ $is_bsd -eq 1 ]; then
+  # commands required for FreeBSD
+  required_cmds_bsd=("gdircolors" "fc-cache")
+
+  for cmd in "${required_cmds_bsd[@]}"; do
+      if ! command -v "$cmd" &> /dev/null; then
+          missing_cmds+=("$cmd")
+      fi
+  done
+fi
 
 # Report missing commands
 if [ ${#missing_cmds[@]} -ne 0 ]; then
@@ -104,6 +120,17 @@ check_success "Creating temporary directory"
 git clone https://github.com/Chrysostomus/manjaro-zsh-config.git "${temp_dir}/manjaro-zsh-config"
 check_success "Cloning manjaro-zsh-config"
 
+if [ $is_bsd -eq 1 ]; then
+    # prepend an alias into .zshrc for gdircolors
+    echo -e "# Create alias before loading sources\nalias dircolors=gdircolors\n\n$(<"${temp_dir}/manjaro-zsh-config/.zshrc")" > "${temp_dir}/manjaro-zsh-config/.zshrc"
+    check_success "Adding alias to .zshrc"
+
+    # the zsh install on FreeBSD creates and installs to /usr/local/share/zsh
+    # Manjaro's config install needs the Linux location /usr/share/zsh
+    sudo mkdir -p "/usr/share/zsh/plugins"
+    check_success "Creating /usr/share/zsh/plugins"
+fi
+
 # Install Zsh configuration files
 install -v -D -m644 "${temp_dir}/manjaro-zsh-config/.zshrc" "$HOME/.zshrc"
 check_success "Installing .zshrc in $HOME"
@@ -128,7 +155,6 @@ check_success "Removing temporary directory with cloned repositories"
 # Copy p10k.zsh to ~/.p10k.zsh
 cp /usr/share/zsh/p10k.zsh "$HOME/.p10k.zsh"
 check_success "Copying p10k.zsh to $HOME/.p10k.zsh"
-
 
 # Clone Zsh plugins
 # Zsh autosuggestions
