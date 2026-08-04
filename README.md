@@ -66,6 +66,9 @@ This script has been tested on the following operating systems:
 
 - Ubuntu 24.04
 - Kubuntu 24.04
+- FreeBSD 15.0
+- GhostBSD 26.1-R15.0p2
+- GhostBSD 25.02-R14.3p2
 
 ## License
 
